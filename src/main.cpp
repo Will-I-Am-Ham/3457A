@@ -28,6 +28,8 @@ controller Controller1 = controller(primary);
 brain BigBrain;
 
 motor Intake = motor(PORT12, ratio6_1, true);
+motor Arm = motor(PORT4, ratio6_1, true); 
+digital_out Claw = digital_out(BigBrain.ThreeWirePort.A);
 
 motor_group LeftDriveSmart = motor_group(leftDriveA, leftDriveB, leftDriveC);
 
@@ -237,6 +239,11 @@ void usercontrol(void) {
   // define variables used for controlling motors based on controller inputs
   bool DrivetrainLNeedsToBeStopped_Controller1 = true;
   bool DrivetrainRNeedsToBeStopped_Controller1 = true;
+
+  bool Claw_toggle = false; 
+
+
+
   while (1) {
     // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3
@@ -289,6 +296,17 @@ void usercontrol(void) {
         Intake.stop();
       }
 
+      if (Claw_toggle) {
+        Claw.set(true);
+      } else {
+        Claw.set(false);
+      }
+
+      if (Controller1.ButtonA.pressing()) {
+        Claw_toggle = !Claw_toggle;
+        waitUntil(!Controller1.ButtonA.pressing());
+      }
+
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
@@ -301,6 +319,27 @@ void usercontrol(void) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
     chassis.control_arcade();
+
+
+    if(Controller1.ButtonL1.pressing()) {
+      Intake.spin(fwd, 100, pct);
+    } else if (Controller1.ButtonL2.pressing()) {
+      Intake.spin(reverse, 100, pct);
+    } else {
+      Intake.stop(brake); // change to hold or coast or brake
+    }
+
+  
+    if(Controller1.ButtonR1.pressing()) {
+      Arm.spin(fwd, 100, pct);
+    } else if (Controller1.ButtonR2.pressing()) {
+      Arm.spin(reverse, 100, pct);
+    } else {
+      Arm.stop(brake); // change to hold or coast or brake
+    }
+
+
+
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
