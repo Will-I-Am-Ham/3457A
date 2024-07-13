@@ -14,21 +14,21 @@ competition Competition;
 /*  properly reversed, meaning the drive should drive forward when all       */
 /*  motors spin forward.                                                     */
 /*---------------------------------------------------------------------------*/
-motor leftDriveA = motor(PORT19, ratio6_1, true);
-motor leftDriveB = motor(PORT9, ratio6_1, true); 
-motor leftDriveC = motor(PORT11, ratio6_1, true);
+motor leftDriveA = motor(PORT2, ratio6_1, true);
+motor leftDriveB = motor(PORT1, ratio6_1, true); 
+motor leftDriveC = motor(PORT4, ratio6_1, true);
 
-motor rightDriveA = motor(PORT13, ratio6_1, false);
-motor rightDriveB = motor(PORT21, ratio6_1, false); 
-motor rightDriveC = motor(PORT14, ratio6_1, false);
+motor rightDriveA = motor(PORT3, ratio6_1, false);
+motor rightDriveB = motor(PORT6, ratio6_1, false); 
+motor rightDriveC = motor(PORT8, ratio6_1, false);
 
-inertial DrivetrainInertial = inertial(PORT4);
+inertial DrivetrainInertial = inertial(PORT5);
 
 controller Controller1 = controller(primary);
 brain BigBrain;
 
 motor Intake = motor(PORT12, ratio6_1, true);
-motor Arm = motor(PORT4, ratio6_1, true); 
+motor Arm = motor(PORT9, ratio6_1, true); 
 digital_out Claw = digital_out(BigBrain.ThreeWirePort.A);
 
 motor_group LeftDriveSmart = motor_group(leftDriveA, leftDriveB, leftDriveC);
