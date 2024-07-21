@@ -1,4 +1,5 @@
-#include "vex.h"
+#include "autons.h"
+using namespace vex;
 
 /**
  * Resets the constants for auton movement.

@@ -1,4 +1,6 @@
-#include "vex.h"
+#pragma once
+#include "robot-config.h"
+#include "JAR-Template/drive.h"
 
 using namespace vex;
 using signature = vision::signature;
