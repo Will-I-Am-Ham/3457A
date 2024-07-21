@@ -127,3 +127,56 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(0, 18, 270);
   chassis.holonomic_drive_to_pose(0, 0, 0);
 }
+
+void rightSide() {
+  chassis.set_coordinates(-58, -57, 45);  
+
+  while (Intake.torque() < 6) {
+    Intake.spin(forward, 100, pct);
+  }
+  Intake.stop();
+  
+  chassis.drive_to_point(-40, -40);
+  chassis.turn_to_point(-58, -57);
+  chassis.drive_to_point(-24, -23);
+  Claw.set(true);
+  chassis.turn_to_point(-24, -46);
+  chassis.drive_to_point(-24, -46);
+}
+
+
+void crazyRightSide() {
+  chassis.set_coordinates(-59, -52, 0);
+  chassis.turn_to_point(-47, -46);
+  
+  while (Intake.torque() < 6) {
+    Intake.spin(forward, 100, pct);
+  }
+  Intake.stop();
+
+  chassis.drive_to_point(-47, -46);
+  chassis.drive_to_point(-21, -35);
+  chassis.turn_to_point(-1, -47);
+  chassis.drive_to_point(-1, -47);
+}
+
+void oppositeRightSide() {
+  chassis.set_coordinates(59, -52, 0);
+  chassis.turn_to_point(47, -46);
+  
+  while (Intake.torque() < 6) {
+    Intake.spin(forward, 100, pct);
+  }
+  Intake.stop();
+
+  chassis.drive_to_point(47, -46);
+  chassis.drive_to_point(21, -35);
+  chassis.turn_to_point(1, -47);
+  chassis.drive_to_point(1, -47);
+}
+
+// not possible as of now 
+void leftSide() {
+
+}
+

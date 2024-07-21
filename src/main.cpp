@@ -220,6 +220,15 @@ void autonomous(void) {
     case 7:
       holonomic_odom_test();
       break;
+    case 8:
+      rightSide();
+      break;
+    case 9:
+      crazyRightSide();
+      break;
+    case 10:
+      leftSide();
+      break;
  }
 }
 
